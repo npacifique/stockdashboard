@@ -140,11 +140,10 @@ def get_return(data):
     return pd.DataFrame(_gains)
 
 
-load_figure_template("SLATE")
 # app = Dash(external_stylesheets=[dbc.themes.DARKLY])
 app = Dash(__name__, external_stylesheets=[dbc.themes.SLATE])
 app.title = "Stock Analysis"
-
+load_figure_template("SLATE")
 
 def draw_figure(data):
     fig = go.Figure()
