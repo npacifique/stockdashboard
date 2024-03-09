@@ -151,7 +151,11 @@ def draw_figure(data):
 
 load_figure_template("SLATE")
 # app = Dash(external_stylesheets=[dbc.themes.DARKLY])
-app = Dash(__name__, external_stylesheets=[dbc.themes.SLATE])
+app = Dash(
+    __name__,
+    external_stylesheets=[dbc.themes.SLATE],
+    requests_pathname_prefix="/stockanalysis/",
+)
 app.title = "Stock Analysis"
 
 def card_col(card_id, card_title):
