@@ -151,12 +151,9 @@ def draw_figure(data):
 
 load_figure_template("SLATE")
 # app = Dash(external_stylesheets=[dbc.themes.DARKLY])
-app = Dash(
-    __name__,
-    external_stylesheets=[dbc.themes.SLATE],
-    requests_pathname_prefix="/stockanalysis/",
-)
+app = Dash(__name__, external_stylesheets=[dbc.themes.SLATE])
 app.title = "Stock Analysis"
+
 
 def card_col(card_id, card_title):
     """
@@ -204,9 +201,40 @@ app.layout = dbc.Container(
 
 
 @callback(
-    Output("graph", "figure"), Output("title_id", "children"),  Output("error_id", "children"), Output("price", "children"),  Output("average", "children"),  Output("gain", "children"), Output("table-container", "children"),  Input("5d", "n_clicks"), Input("1mo", "n_clicks"),  Input("3mo", "n_clicks"),
-    Input("6mo", "n_clicks"), Input("1y", "n_clicks"), Input("2y", "n_clicks"), Input("5y", "n_clicks"), Input("10y", "n_clicks"), Input("ytd", "n_clicks"), Input("max", "n_clicks"), State("symbol", "value"), Input("find", "n_clicks"), )
-def index( btn_5d, btn_1mo, btn_3mo, btn_6mo, btn_1y, btn_2y, btn_5y, btn_10y, btn_ytd, btn_max, value, find, ):
+    Output("graph", "figure"),
+    Output("title_id", "children"),
+    Output("error_id", "children"),
+    Output("price", "children"),
+    Output("average", "children"),
+    Output("gain", "children"),
+    Output("table-container", "children"),
+    Input("5d", "n_clicks"),
+    Input("1mo", "n_clicks"),
+    Input("3mo", "n_clicks"),
+    Input("6mo", "n_clicks"),
+    Input("1y", "n_clicks"),
+    Input("2y", "n_clicks"),
+    Input("5y", "n_clicks"),
+    Input("10y", "n_clicks"),
+    Input("ytd", "n_clicks"),
+    Input("max", "n_clicks"),
+    State("symbol", "value"),
+    Input("find", "n_clicks"),
+)
+def index(
+    btn_5d,
+    btn_1mo,
+    btn_3mo,
+    btn_6mo,
+    btn_1y,
+    btn_2y,
+    btn_5y,
+    btn_10y,
+    btn_ytd,
+    btn_max,
+    value,
+    find,
+):
     # handle wrong input
     period = ""
     df = yf.Ticker(value).history(period="1Y")
@@ -261,7 +289,14 @@ def index( btn_5d, btn_1mo, btn_3mo, btn_6mo, btn_1y, btn_2y, btn_5y, btn_10y, b
         data, striped=True, bordered=True, hover=True, color="dark", class_name="dbc"
     )
 
-    return ( fig, f"{str(value).upper()} ({period}) Stock Analysis", error, price, average, f"%{gain}", table,
+    return (
+        fig,
+        f"{str(value).upper()} ({period}) Stock Analysis",
+        error,
+        price,
+        average,
+        f"%{gain}",
+        table,
     )
 
 
