@@ -140,6 +140,12 @@ def get_return(data):
     return pd.DataFrame(_gains)
 
 
+load_figure_template("SLATE")
+# app = Dash(external_stylesheets=[dbc.themes.DARKLY])
+app = Dash(__name__, external_stylesheets=[dbc.themes.SLATE])
+app.title = "Stock Analysis"
+
+
 def draw_figure(data):
     fig = go.Figure()
     fig.add_trace(go.Scatter(y=data["Close"], x=data.index))
@@ -147,12 +153,6 @@ def draw_figure(data):
         margin={"t": 0, "l": 10, "b": 0, "r": 10}
     )  # ,  template ='plotly_dark')
     return fig
-
-
-load_figure_template("SLATE")
-# app = Dash(external_stylesheets=[dbc.themes.DARKLY])
-app = Dash(__name__, external_stylesheets=[dbc.themes.SLATE])
-app.title = "Stock Analysis"
 
 
 def card_col(card_id, card_title):
