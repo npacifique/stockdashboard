@@ -6,8 +6,6 @@ import yfinance as yf
 import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template
 
-# dbc_css = ("https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates@V1.0.2/dbc.min.css")
-
 
 def performance_tab_table(html, dbc):
     """
@@ -139,9 +137,16 @@ def get_return(data):
 
     return pd.DataFrame(_gains)
 
+# dbc_css = ("https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates@V1.0.2/dbc.min.css")
 
 # app = Dash(external_stylesheets=[dbc.themes.DARKLY])
-app = Dash(__name__, external_stylesheets=[dbc.themes.SLATE])
+# app = Dash(__name__, external_stylesheets=[dbc.themes.SLATE])
+
+dbc_css = (
+    "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates@V1.0.1/dbc.min.css"
+)
+app = Dash(__name__, external_stylesheets=[dbc.themes.SLATE, dbc_css])
+
 app.title = "Stock Analysis"
 load_figure_template("SLATE")
 
